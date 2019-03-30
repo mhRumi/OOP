@@ -1,0 +1,26 @@
+package Assignment_3;
+
+public class SubThread extends Thread{
+    
+    String threadName = "";
+    Method a;
+    
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            a.operation(2, threadName);
+            System.out.println(a.num);
+            try {
+                sleep(100);
+            } catch (InterruptedException ex) {
+            }
+        }
+    }
+
+    public void setname(String name, Method x) {
+        threadName = name;
+        a = x;
+
+    }
+    
+}
