@@ -11,18 +11,13 @@ public class Bank {
     
     public void withDraw(int amount){
         
-        if(check){
-            try {
-                System.out.println("Wait the system is busy now");
-                wait();
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Bank.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        while(check){
             
+                System.out.println(Thread.currentThread().getName()+"   Wait the system is busy now");       
     }
-        else{
-            check = true;
-             System.out.println("going to withdraw...");
+        check = true;
+           
+        System.out.println(Thread.currentThread().getName()+"  going to withdraw...");
         System.out.println("Current Bank's balance is "+Bank_balance);
         if(Bank_balance < amount){
                System.out.println("Current Bank's balance too low");
@@ -30,16 +25,9 @@ public class Bank {
          Bank_balance -= amount;
          
          System.out.println("withdraw completed...");
-          System.out.println("Current Bank's balance is "+Bank_balance);
+          System.out.println(Thread.currentThread().getName()+"   Current Bank's balance is after withdraw "+Bank_balance);
           
-          
-        }
-        notify();
-        
-        check = false;
-        
-       
-        
+         check = false;     
     }
     
 }
